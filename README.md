@@ -35,7 +35,7 @@ void int_callback(int (*cb)(int), int cb_arg) {
 
 int main() {
   void_callback(lambda(void, (), ->, { printf("Regular lambda\n"); })); // Will print "Regular lambda".
-  void_callback(action({ printf("Action lambda"); }));                  // Will print "Action lambda".
+  void_callback(action({ printf("Action lambda\n"); }));                  // Will print "Action lambda".
 
   int_callback(lambda_expr(int, (int x), ->, x + 5), 6); // Will be called with x = 6. and then print "Callback result: 11".
   int_callback(fn(int, (int x), { return x + 5; }), 6);  // Equivilent to the line above (but no need for the arrow).
