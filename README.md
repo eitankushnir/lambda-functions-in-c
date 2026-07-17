@@ -7,10 +7,10 @@ Utilizes gnu extensions like statement expressions and nested functions, of whic
 
 ## The Macro
 ```c
-#define lambda_impl(ret, params, linenr, counter, func) \
-  ({                                                    \
-    ret concat(lmb_, linenr, counter) params func       \
-        &concat(lmb_, linenr, counter);                 \
+#define lambda_impl(ret, params, linenr, counter, func)  \
+  ({                                                     \
+    ret genid__lambda(lmb_, linenr, counter) params func \
+        &genid__lambda(lmb_, linenr, counter);           \
   })
 
 #define lambda(ret, params, arrow, func) \
@@ -24,9 +24,18 @@ There are more variant of the lambda macro shown in the examples.
 
 ## Example
 ```c
+void void_callback(void (*cb)(void)) {
+  printf("Calling cb...\n");
+  cb();
+}
+
+void int_callback(int (*cb)(int), int cb_arg) {
+  printf("Callback result: %d\n", cb(cb_arg));
+}
+
 int main() {
-  void_callback(lambda(void, (), ->, {printf("Regular lambda\n")})); // Will print "Regular lambda".
-  void_callback(action({printf("Action lambda")}));                  // Will print "Action lambda".
+  void_callback(lambda(void, (), ->, { printf("Regular lambda\n"); })); // Will print "Regular lambda".
+  void_callback(action({ printf("Action lambda"); }));                  // Will print "Action lambda".
 
   int_callback(lambda_expr(int, (int x), ->, x + 5), 6); // Will be called with x = 6. and then print "Callback result: 11".
   int_callback(fn(int, (int x), { return x + 5; }), 6);  // Equivilent to the line above (but no need for the arrow).
