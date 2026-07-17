@@ -1,11 +1,12 @@
 # lambda-functions-in-c
-Adding lambda expressions to the c language using macros. (not practical)
+Adding lambda expressions to the c language using macros (not practical, and should probably never be used in real projects).  
 
 ## Notice
 This only works on GNU C (C compiled using gcc with the -std=gnuX flag).  
-Utilizes gnu extensions like statement expressions and nested functions, of which the latter is gnu only. 
-**when using nested function the stack become executable, which is a severe security risk.**  
-Which why these macros, whoever cool it is to have lambdas in regular C, should probably not be used in real applications.
+Utilizes gnu extensions like statement expressions and nested functions, of which the latter is gnu only.  
+**When using nested function the stack become executable, which is a severe security risk.**  
+
+
 
 ## The Macro
 ```c
