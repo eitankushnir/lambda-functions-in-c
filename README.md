@@ -4,6 +4,8 @@ Adding lambda expressions to the c language using macros. (not practical)
 ## Notice
 This only works on GNU C (C compiled using gcc with the -std=gnuX flag).  
 Utilizes gnu extensions like statement expressions and nested functions, of which the latter is gnu only. 
+**when using nested function the stack become executable, which is a severe security risk.**  
+Which why these macros, whoever cool it is to have lambdas in regular C, should probably not be used in real applications.
 
 ## The Macro
 ```c
