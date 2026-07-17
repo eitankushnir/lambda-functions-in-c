@@ -1,4 +1,4 @@
-# lambda-functions-in-c
+# Lambda Functions in C
 Adding lambda expressions to the c language using macros (not practical, and should probably never be used in real projects).  
 
 ## Notice
